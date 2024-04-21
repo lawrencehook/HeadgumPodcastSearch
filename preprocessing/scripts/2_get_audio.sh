@@ -2,16 +2,9 @@
 cat data/urls.txt | while read url; do
   echo
 
-  # echo "id: $id"
-  # vid_id=`yt-dlp --print "%(id)s" $url`
-  # if [ $? -ne 0 ]; then
-  #   echo "Skipping..."
-  #   continue
-  # fi
-  # echo "vid_id: $vid_id"
-
   vid_id=${url#*v=}
   echo $vid_id
+
   if find "data/audio" -type f -name "*${vid_id}*" | grep -q .; then
     ls data/audio/*${vid_id}*
     echo "Match found!"
