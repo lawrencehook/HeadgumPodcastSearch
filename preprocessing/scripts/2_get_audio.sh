@@ -28,5 +28,5 @@ cat data/urls.txt | while read url; do
 done
 
 sort -u data/dates.txt > tmp
-cat tmp > data/dates.txt
+grep "\S" tmp > data/dates.txt
 rm tmp

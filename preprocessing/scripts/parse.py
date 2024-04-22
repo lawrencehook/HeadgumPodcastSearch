@@ -2,6 +2,7 @@ import sys
 import webvtt
 import re
 import json
+import string
 
 import nltk
 # nltk.download('stopwords')
@@ -38,6 +39,15 @@ def get_sec(time_str):
     h, m, s = re.sub(r'\..*$', '', time_str).split(':')
     return int(h) * 3600 + int(m) * 60 + int(s)
 
+def remove_punctuation(text):
+    # Create a translation table that maps each punctuation character to None
+    translator = str.maketrans('', '', string.punctuation)
+    
+    # Use the translation table to remove punctuation from the text
+    cleaned_text = text.translate(translator)
+    
+    return cleaned_text
+
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
@@ -52,7 +62,7 @@ if __name__ == '__main__':
             dates[vid] = int(date)
 
     # Get video ID from filename.
-    p = re.compile(r'\[([^\[]*?)\]\.en\.vtt')
+    p = re.compile(r'\[([^\[]*?)\](\.en)?\.vtt')
     vtt_filename = sys.argv[1]
     vid = p.search(vtt_filename).group(1)
     upload_date = dates[vid]
@@ -77,7 +87,7 @@ if __name__ == '__main__':
         segments.append([ start, text ])
 
         idx = len(segments) - 1
-        words = text.split()
+        words = remove_punctuation(text).split()
         for word in words:
             if word in sw: continue
             if word in word_map:

@@ -1,5 +1,5 @@
-// const HOST = 'http://localhost:3003';
-const HOST = 'https://server.lawrencehook.com/HeadgumPodcastSearch';
+const HOST = 'http://localhost:3004';
+// const HOST = 'https://server.lawrencehook.com/HeadgumPodcastSearch';
 
 function sendHTTPRequest(type, url, jsonParams, { token, raw=false }={}) {
   const request = new Promise((resolve, reject) => {

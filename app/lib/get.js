@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const d = fs.readFileSync('data/short.json');
+const d = fs.readFileSync('data/final.json');
 const parsed = JSON.parse(d);
 const { segments, word_map, meta, updatedAt } = parsed;
 Object.values(meta).forEach(obj => {
@@ -9,7 +9,7 @@ Object.values(meta).forEach(obj => {
 
 
 // const Text = require('../models/text.js');
-const full = JSON.parse(fs.readFileSync('data/long.json'));
+const full = JSON.parse(fs.readFileSync('data/full.json'));
 const vids = Object.keys(full)
 
 
